@@ -1,4 +1,4 @@
-# file_copy
+# copy-commando
 
 TeraCopy is a great tool, the problem is that it lacks performance , the release is buggy (crashes when trying to copy >100K files or so) and the last release was years ago.
 Besides that, it's a paid tool.
