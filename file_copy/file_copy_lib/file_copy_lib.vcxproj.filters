@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="crc32">
+      <UniqueIdentifier>{dd6215f0-8c94-4f05-9e71-f7e730e12357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crc32\Header Files">
+      <UniqueIdentifier>{962041d8-c1c8-4be6-be9c-eae2ef617e7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crc32\Source Files">
+      <UniqueIdentifier>{60990c54-4eca-415a-97ac-9137ea4bc109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="file_copy">
+      <UniqueIdentifier>{4ccbebae-00c6-496a-90a2-10dc624adbe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="file_copy\Header Files">
+      <UniqueIdentifier>{b1cb1625-15e1-49d5-93c9-770a6fe4bf71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="file_copy\Source Files">
+      <UniqueIdentifier>{bcc8aae4-d755-4472-905d-047ac63bae8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="concurrency">
+      <UniqueIdentifier>{8a08f819-26ce-4a06-80e5-333a6bc94d79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="concurrency\Header Files">
+      <UniqueIdentifier>{b07c8722-95bd-4a14-b9c1-703d5de952ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="concurrency\Source Files">
+      <UniqueIdentifier>{869dcc22-d4af-4ba0-8175-b022e6c3c54c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\crc32.h">
+      <Filter>crc32\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\copy_engine.h">
+      <Filter>file_copy\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\file.h">
+      <Filter>file_copy\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\file_part_task.h">
+      <Filter>file_copy\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\folder_task.h">
+      <Filter>file_copy\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tools.h">
+      <Filter>file_copy\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trace.h">
+      <Filter>file_copy\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concurrent_queue.h">
+      <Filter>concurrency\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\task.h">
+      <Filter>concurrency\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\task_sink.h">
+      <Filter>concurrency\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\thread_tools.h">
+      <Filter>file_copy\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crc32\crc32.cpp">
+      <Filter>crc32\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="concurrency\task_sink.cpp">
+      <Filter>concurrency\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file_part_task.cpp">
+      <Filter>file_copy\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
