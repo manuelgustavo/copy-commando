@@ -10,7 +10,7 @@ The application features synchronous and asynchronous copy decision based on the
 Attributes preservation;
 CRC32 checking.
 
-To compile use Visual Studio 2015.
+To compile use Visual Studio 2015. It should work in both x64 and x86 settings.
 
 Pre-requisites: WTL9 (https://sourceforge.net/p/wtl/discussion/374433/thread/152f76ef/)
 
