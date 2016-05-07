@@ -202,7 +202,7 @@ int main()
 		tester(_T("f:\\t1\\filecopy"), _T("f:\\t1"), false, false, copy_engine::async_mode::async);*/
 
 		wcout << _T("testing auto async\n");
-		tester(_T("f:\\t1\\filecopy"), _T("h:\\t1"), false, false);
+		tester(_T("c:\\a"), _T("c:\\b"), false, false);
 
 		/*wcout << _T("testing synchronous\n");
 		tester(_T("e:\\t1\\filecopy"), _T("e:\\t1"), false, false, copy_engine::async_mode::sync);*/

@@ -62,7 +62,7 @@ LRESULT CMainDlg::OnInitDialog(HWND /**/, LPARAM /*lParam*/) {
 	/*file_copy::copy_engine _copy{ 3000 };
 	_copy.copy_prepare(_T("e:\\t1\\filecopy"), _T("e:\\t1"));
 	_copy.copy_start();*/
-	m_file_copy_thread.add(_T("e:\\t1\\filecopy"), _T("e:\\t1"));
+	m_file_copy_thread.add(_T("c:\\a"), _T("c:\\b"));
 	m_file_copy_thread.run();
 
 	//m_file_copy_thread
