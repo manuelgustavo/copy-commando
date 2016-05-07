@@ -1,0 +1,12 @@
+*.obj
+*.tlog
+*.log
+*.pdb
+*.pch
+file_copy/file_copy_lib/x64/Debug/file_copy_lib.idb
+*.idb
+*.ipch
+file_copy/.vs/file_copy/v14/.suo
+*.sdf
+file_copy/file_copy.VC.opendb
+*.ilk

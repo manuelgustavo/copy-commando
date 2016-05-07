@@ -4,6 +4,13 @@
 #include <WinBase.h>
 
 #include <stdio.h>
+
+// added in order to use CW2A
+
+#include <atlbase.h>
+#include <atlconv.h>
+
+// /added in order to use CW2A
 #include <string>
 #include <algorithm>
 #include <cassert>
@@ -12,10 +19,7 @@
 #include <vector>
 #include "trace.h"
 #include <tchar.h>
-
 //#include <winioctl.h>
-
-
 
 namespace file_copy {
 	//const int READ_SIZE = 65536;
@@ -28,31 +32,21 @@ namespace file_copy {
 	//    const std::string& s: [in] string to be converted
 	// Returns: std::wstring: value converted into std::wstring
 	/*inline std::wstring string_to_wstring(const std::string& s) {
-		std::wstring ws(s.begin(), s.end());
-		//std::copy(s.begin(), s.end(), ws.begin());
-		return ws;
+	std::wstring ws(s.begin(), s.end());
+	//std::copy(s.begin(), s.end(), ws.begin());
+	return ws;
 	}*/
 	inline std::string wstring_to_string(const std::wstring& ws) {
-		std::unique_ptr<char> buff(new char[ws.size() * 2]);
-
-		//char t1[10];
-		//wchar_t t2[10];
-		//wcstombs_s(t1, ws.size() * 2,t2, ws.size() * 2);
-		size_t num_converted;
-		wcstombs_s(&num_converted, buff.get(), ws.size() * 2, ws.c_str(), ws.size() * 2);
-
-		return std::string{ buff.get() };
+		return std::string(ATL::CW2A(ws.c_str(), CP_UTF8));
 	}
 
 	inline std::wstring string_to_wstring(const std::string& s) { // TODO: NEEDS TO BE CHANGED AS THE ONE ABOVE
-		std::wstring ws(s.begin(), s.end());
-		//std::copy(s.begin(), s.end(), ws.begin());
-		return ws;
+		return std::wstring(ATL::CA2W(s.c_str(), CP_UTF8));
 	}
 
 	// creates a dirtectory, regardless if it's recursive or not
 	inline bool create_dir(const std::wstring& dir) {
-		if (dir.size() < 7)
+		if (!dir.size())
 			return false;
 		if (!CreateDirectory(dir.c_str(), nullptr)) {
 			auto err = GetLastError();
@@ -70,6 +64,7 @@ namespace file_copy {
 		}
 	}
 
+
 	//using volume_disk_extents_ptr = std::shared_ptr<VOLUME_DISK_EXTENTS>;
 	// Get the Disk Extents (used for physical disk id)
 	// Parameters:
@@ -79,6 +74,7 @@ namespace file_copy {
 	inline DWORD get_disk_extents(const std::wstring& root, VOLUME_DISK_EXTENTS& extents) {
 		DWORD ret = 0;
 		VOLUME_DISK_EXTENTS extents_out;
+
 		//TRACE(_T("Setting file basic info (times and basic attributes) for: %s\n : is_directory \"%s\""), path_full().c_str(), is_directory() ? _T("true") : _T("false"));
 		HANDLE h_file = INVALID_HANDLE_VALUE;
 		//std::wstring remove = source->root_full();
@@ -130,7 +126,7 @@ namespace file_copy {
 
 		DWORD ret = 0;
 		ULARGE_INTEGER free_bytes_to_caller;
-		
+
 		if (!GetDiskFreeSpaceExW(root.c_str(), &free_bytes_to_caller, NULL, NULL)) {
 			ret = GetLastError();
 		} else {
@@ -145,10 +141,10 @@ namespace file_copy {
 	//    const std::string& s: [in] wstring to be converted
 	// Returns: std::wstring: value converted into std::string
 	/*inline std::string wstring_to_string(const std::wstring& ws) {
-		//std::string s(ws.length(), ' ');
-		//std::copy(ws.begin(), ws.end(), s.begin());
-		std::string s(ws.begin(), ws.end());
-		return s;
+	//std::string s(ws.length(), ' ');
+	//std::copy(ws.begin(), ws.end(), s.begin());
+	std::string s(ws.begin(), ws.end());
+	return s;
 	}*/
 
 
@@ -248,32 +244,32 @@ namespace file_copy {
 	// will notify an event once when notify() is called and when the class is destroyed.
 	/*class event_notifier {
 	public:
-		event_notifier(std::mutex* pMutex, std::condition_variable* cv) : m_p_mutex{ pMutex }, m_p_cv{ cv } {
-			assert(pMutex && cv);
-		}
+	event_notifier(std::mutex* pMutex, std::condition_variable* cv) : m_p_mutex{ pMutex }, m_p_cv{ cv } {
+	assert(pMutex && cv);
+	}
 
-		~event_notifier() {
-			notify();
-		}
+	~event_notifier() {
+	notify();
+	}
 
-		void notify() {
-			if (!m_notified && m_p_mutex && m_p_cv) {
-				{
-					std::lock_guard<std::mutex> lk(*m_p_mutex); // guarantees the requestor will be waiting for a response
-					m_notified = true;
-				}
-				m_p_cv->notify_all(); // notify request
-			}
-		}
+	void notify() {
+	if (!m_notified && m_p_mutex && m_p_cv) {
+	{
+	std::lock_guard<std::mutex> lk(*m_p_mutex); // guarantees the requestor will be waiting for a response
+	m_notified = true;
+	}
+	m_p_cv->notify_all(); // notify request
+	}
+	}
 
-		void reset() {
-			std::lock_guard<std::mutex> lk(*m_p_mutex);
-			m_notified = false;
-		}
+	void reset() {
+	std::lock_guard<std::mutex> lk(*m_p_mutex);
+	m_notified = false;
+	}
 
 	private:
-		std::mutex* m_p_mutex;
-		std::condition_variable* m_p_cv;
-		bool m_notified{ false };
+	std::mutex* m_p_mutex;
+	std::condition_variable* m_p_cv;
+	bool m_notified{ false };
 	};*/
 }

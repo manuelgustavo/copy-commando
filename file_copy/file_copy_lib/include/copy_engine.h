@@ -196,7 +196,7 @@ namespace file_copy {
 			}
 
 			if (!m_task_sink)
-				m_task_sink.reset(new task_sink{ m_task_queue });
+				m_task_sink = std::make_shared<task_sink>(m_task_queue);
 
 			if (async() && !m_sink_thread) {
 				m_sink_thread = m_task_sink->run();
@@ -221,7 +221,7 @@ namespace file_copy {
 
 		// initialized the copy engine
 		void init(const unsigned int& task_queue_size = 3000) {
-			m_task_queue.reset(new task_queue{ task_queue_size });
+			m_task_queue = std::make_shared<task_queue>(task_queue_size);
 		}
 
 		// Is the current mode assynchronous?
